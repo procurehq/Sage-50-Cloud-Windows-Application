@@ -23,11 +23,12 @@ Make a note of the Sage50cloud files location. This is typically in the form
 ## Installation Procedure
 
 
+
 1. Download the latest release and unzip into a permanant directory. (*Ensure the zip file is unlocked. Right click > Properties > Unlock*)
 
 2. You will need to get your ProcureHQ authorisation token from your account here: https://app.procurehq.com/settings#/api
 
-3. SDO Type Lib Registration - 
+3. #### SDO Type Lib Registration - 
 
    For the Windows Service to work the Type Lib needs to be registered.
 
@@ -46,7 +47,7 @@ Make a note of the Sage50cloud files location. This is typically in the form
 
    
 
-4. SDO Activation - V24.2 and below only
+4. #### SDO Activation - V24.2 and below only
 
    Sage SDO needs to be activated for it to work. The following article (<https://my.sage.co.uk/public/help/askarticle.aspx?articleid=9342>) details the full Sage description.
 
@@ -56,67 +57,49 @@ Make a note of the Sage50cloud files location. This is typically in the form
 
     To enter your Sage Data Objects activation information
 
-   \1. On the menu bar click **Tools** then click **Activation** and click **Enable 3rd Party Integration**.
+   1. On the menu bar click **Tools** then click **Activation** and click **Enable 3rd Party Integration**.
 
    **Note:** If the **Tools** menu doesn't appear, log on to Sage Accounts using the **MANAGER** logon.
 
-   \2.    Enter your Sage Data Objects serial number and activation key then click **Continue**.
+   2. Enter your Sage Data Objects serial number and activation key then click **Continue**.
 
+5. #### Install the Windows Service
 
+   In Windows Explore determine the location of the InstallUtil.exe utility. This normally in
 
-   
+   C:\Windows\Microsoft.NET\Framework\v4.0.30319\
 
-### Install the Windows Service
+   Open a command window. This must be opened as an Administrator.
 
-In Windows Explore determine the location of the InstallUtil.exe utility. This normally in
+   In the command window navigate to the directory where the ProcureHQ files were installed.
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\
+   Run the command
 
-Open a command window. This must be opened as an Administrator.
+   {location of install utility}\InstallUtil.exe -u ProcureHQSage5025.exe
 
-In the command window navigate to the directory where the ProcureHQ files were installed.
+   For example.
 
-Run the command
+   `C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe ProcureHQSage5025.exe`
 
-{location of install utility}\InstallUtil.exe -u ProcureHQSage5025.exe
+6. #### Configure the Windows Service
 
-For example.
+   Add a desktop link to ProcureHQConfig.exe in the installation directory.
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe ProcureHQSage5025.exe
+   Open ProcureHQConfig and the screen will be displayed
 
-   
+   Enter and Apply the configuration settings.
 
-To uninstall the service run the InstallUtile.exe command with the –u. For example
+7. #### Start the Windows Service
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -u ProcureHQSage5025.exe
+   Type Services in the Windows search bar. Locate 'ProcureHQ Sage50Cloud V25'
 
-### Configure the Windows Service
+   Right click and the select Properties
 
-Add a desktop link to ProcureHQConfig.exe in the installation directory.
+   Change “Startup type” to Automatic. Then click Apply
 
-Open ProcureHQConfig and the screen will be displayed
+   The click Start.
 
-   
-
-Enter and Apply the configuration settings.
-
-### Start the Windows Service
-
-Type Services in the Windows search bar.
-
-Search for ProcureHQ as shown below
-
-  
-
-Right click and the select Properties
-
-
-
-Change “Startup type” to Automatic. Then click Apply
-
-The click Start.
-
-## Check Installation
+### Check Installation
 
 In the installation directory open ServiceLog.txt file and check if there are any errors.
 
@@ -148,7 +131,7 @@ In ProcureHQ start the Invoice processing steps and ensure corresponding entries
 
    
 
-   ## Logging
+   ### Logging
 
    When logging is switched “On” information is written to the SystemLog.txt in the installation directory.
 
