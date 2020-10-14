@@ -23,59 +23,46 @@ Make a note of the Sage50cloud files location. This is typically in the form
 ## Installation Procedure
 
 
-
 1. Download the latest release and unzip into a permanant directory. (*Ensure the zip file is unlocked. Right click > Properties > Unlock*)
+
 2. You will need to get your ProcureHQ authorisation token from your account here: https://app.procurehq.com/settings#/api
-3. 
 
-### SDO Type Lib Registration
+3. SDO Type Lib Registration - 
 
-For the Windows Service to work the Type Lib needs to be registered.
+   For the Windows Service to work the Type Lib needs to be registered.
 
-| **Sage 50 Version** | **TLB Location**                  |
-| ------------------- | --------------------------------- |
-| V24                 | C:\Windows\SysWOW64\SdoENG240.tlb |
-| V26                 | C:\Windows\SYSWOW64\SDOENG260.tlb |
+   This MUST be run as Administrator. Right click the .EXE and select Run as Administrator.
 
- 
+   Enter the full tlb path. And press Register.
 
-The appropriate Type Lib must be registered using the supplied VBRegTLB6.exe utility.
-
-This MUST be run as Administrator. Right click the .EXE and select Run as Administrator.
-
-Enter the full tlb path. And press Register.
-
-​                                             
-
-If successful you will see the following dialog.
+   Run VBRegTLB6.exe
 
    
 
-### SDO Activation - V24.2 and below only
+   | **Sage 50 Version** | **TLB Location**                  |
+   | ------------------- | --------------------------------- |
+   | V24                 | C:\Windows\SysWOW64\SdoENG240.tlb |
+   | V26                 | C:\Windows\SYSWOW64\SDOENG260.tlb |
 
-Sage SDO needs to be activated for it to work. The following article (<https://my.sage.co.uk/public/help/askarticle.aspx?articleid=9342>) details the full Sage description.
+   
 
-A summary for Sage Accounts V24 is given below. The following Serial Number and Activation Key need to be entered into Sage V24.
+4. SDO Activation - V24.2 and below only
 
- 
+   Sage SDO needs to be activated for it to work. The following article (<https://my.sage.co.uk/public/help/askarticle.aspx?articleid=9342>) details the full Sage description.
 
-| **Sage Accounts v24** | ·         Serial number: SAGESDO   ·         Activation key: ZHIEKPK |
-| --------------------- | ------------------------------------------------------------ |
-|                       |                                                              |
+   A summary for Sage Accounts V24 is given below. The following Serial Number and Activation Key need to be entered into Sage V24.
 
- 
+   Please get the activation keys from ProcureHQ.
 
-To enter your Sage Data Objects activation information
+    To enter your Sage Data Objects activation information
 
-\1. On the menu bar click **Tools** then click **Activation** and click **Enable 3rd Party Integration**.
+   \1. On the menu bar click **Tools** then click **Activation** and click **Enable 3rd Party Integration**.
 
-**Note:** If the **Tools** menu doesn't appear, log on to Sage Accounts using the **MANAGER** logon.
+   **Note:** If the **Tools** menu doesn't appear, log on to Sage Accounts using the **MANAGER** logon.
 
-\2.    Enter your Sage Data Objects serial number and activation key then click **Continue**.
+   \2.    Enter your Sage Data Objects serial number and activation key then click **Continue**.
 
- 
 
-The following are screen shots of successful registration.
 
    
 
@@ -135,8 +122,39 @@ In the installation directory open ServiceLog.txt file and check if there are an
 
 In ProcureHQ start the Invoice processing steps and ensure corresponding entries appear in Sage50cloud. This may take a few minutes.
 
-## Logging
+### Update Process
 
-When logging is switched “On” information is written to the SystemLog.txt in the installation directory.
+1. Download Latest Update
 
-Logging should be switched “On” when verifying the installation and initial processing. It should be switched “Off” during regular operation.
+2. Stop Running Service 
+
+3. Backup the existing 
+
+   `ProcureHQService.config`
+
+4. Uninstall Service
+
+   `C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -u ProcureHQSage5025.exe`
+
+5. Install Service (Reconfigure "Run As Permission" if you are using a network drive which requires authentication.) 
+
+   `C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe ProcureHQSage5025.exe`
+
+6. Copy back up file to existing directory
+
+   `ProcureHQService.config`
+
+7. Restart Service
+
+   
+
+   ## Logging
+
+   When logging is switched “On” information is written to the SystemLog.txt in the installation directory.
+
+   Logging should be switched “On” when verifying the installation and initial processing. It should be switched “Off” during regular operation.
+
+   ### 
+
+
+
